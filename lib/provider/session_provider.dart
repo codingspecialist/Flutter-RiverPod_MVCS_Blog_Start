@@ -23,7 +23,7 @@ class SessionUser {
     this.isLogin = true;
   }
 
-  void logoutSuccess() async {
+  Future<void> logoutSuccess() async {
     this.user = null;
     this.jwt = null;
     this.isLogin = false;

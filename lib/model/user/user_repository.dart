@@ -58,18 +58,22 @@ class UserRepository {
   }
 
   Future<ResponseDTO> fetchLogin(LoginReqDTO loginReqDTO) async {
-    // 1. 통신 시작
-    Response response = await dio.post("/login", data: loginReqDTO.toJson());
+    try{
+      // 1. 통신 시작
+      Response response = await dio.post("/login", data: loginReqDTO.toJson());
 
-    // 2. DTO 파싱
-    ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
-    responseDTO.data = User.fromJson(responseDTO.data);
+      // 2. DTO 파싱
+      ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
+      responseDTO.data = User.fromJson(responseDTO.data);
 
-    // 3. 토큰 받기
-    final authorization = response.headers["authorization"];
-    if(authorization != null){
-      responseDTO.token = authorization.first;
+      // 3. 토큰 받기
+      final authorization = response.headers["authorization"];
+      if(authorization != null){
+        responseDTO.token = authorization.first;
+      }
+      return responseDTO;
+    }catch(e){
+      return ResponseDTO(code: -1, msg: "유저네임 혹은 비번이 틀렸습니다");
     }
-    return responseDTO;
   }
 }
