@@ -12,7 +12,6 @@ class PostHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Logger().d("homePage 빌드");
-
     return Scaffold(
       key: scaffoldKey,
       drawer: CustomNavigation(scaffoldKey),

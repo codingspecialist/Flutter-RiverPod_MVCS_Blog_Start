@@ -17,7 +17,7 @@ Future<void> fetchJoin_test() async{
 }
 
 Future<void> fetchLogin_test() async{
-  LoginReqDTO loginReqDTO = LoginReqDTO(username: "meta2", password: "1234");
+  LoginReqDTO loginReqDTO = LoginReqDTO(username: "ssar", password: "1234");
   ResponseDTO responseDTO = await UserRepository().fetchLogin(loginReqDTO);
   print(responseDTO.code);
   print(responseDTO.msg);
